@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>XXX加密賭場 - 線上娛樂新選擇</title>
+  <title>GOFUN加密賭場 - 線上娛樂新選擇</title>
   <meta name="viewport" content="width=device-width, maximum-scale=1.0">
   <!-- Meta Pixel Code -->
   <script>
@@ -226,6 +226,112 @@
       transform: scale(0.98);
     }
 
+    /* 网络检测样式 */
+    .network-check {
+      margin-top: 30px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 229, 229, 0.3);
+    }
+    .network-title {
+      font-size: 1.2rem;
+      color: #00e5e5;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .speed-test-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .server {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: rgba(5, 70, 70, 0.3);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .server:hover {
+      background: rgba(5, 70, 70, 0.5);
+    }
+    .server-name {
+      flex: 1;
+      font-weight: bold;
+    }
+    .ping-result {
+      width: 80px;
+      text-align: right;
+      font-weight: bold;
+    }
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background-color: #555;
+    }
+    .status-good {
+      background-color: #00FF00;
+      box-shadow: 0 0 5px #00FF00;
+    }
+    .status-medium {
+      background-color: #FFFF00;
+      box-shadow: 0 0 5px #FFFF00;
+    }
+    .status-poor {
+      background-color: #FF0000;
+      box-shadow: 0 0 5px #FF0000;
+    }
+    .test-btn {
+      background: rgba(0, 194, 255, 0.3);
+      color: #fff;
+      border: 1px solid rgba(0, 229, 229, 0.5);
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .test-btn:hover {
+      background: rgba(0, 194, 255, 0.5);
+    }
+    .recommended {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #00e5e5;
+      text-align: center;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-top: 5px;
+      border-radius: 2px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00c2ff, #00e5e5);
+      width: 0%;
+      transition: width 0.3s linear;
+    }
+    .testing-status {
+      display: none;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 5px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .selected-server {
+      border: 1px solid #00e5e5 !important;
+      background: rgba(0, 229, 229, 0.15) !important;
+    }
+
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
@@ -276,7 +382,7 @@
         </div>
       </div>
 
-      <!-- 右側文字宣傳 區塊 -->
+      
       <div class="text-content">
         <!-- 主標題 -->
         <h1 class="game-title">GOFUN 加密賭場<span class="title-r">®</span></h1>
@@ -287,15 +393,327 @@
         <p class="promo-text">無須實名，安全快速提領！</p>
         <p class="promo-text">立即加入，專屬紅利等你來領！</p>
         <p class="promo-details">限時開放，名額有限，先到先得！</p>
-
         
-        <a href="https://97y.me/hJCw3" class="cta-btn" onclick="fbq('track', 'Lead');">立即註冊</a>
+        <!-- 網絡檢測模塊 -->
+        <div class="network-check">
+          <h3 class="network-title">網絡連線檢測</h3>
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="testing-status" id="testingStatus">測試中，請稍候...</div>
+          <div class="speed-test-container">
+            <div class="server" id="server1">
+              <div class="status-indicator" id="status1"></div>
+              <div class="server-name">主站連線 (97y.me)</div>
+              <div class="ping-result" id="ping1">檢測中...</div>
+            </div>
+            <div class="server" id="server2">
+              <div class="status-indicator" id="status2"></div>
+              <div class="server-name">備用線路 1</div>
+              <div class="ping-result" id="ping2">檢測中...</div>
+            </div>
+            <div class="server" id="server3">
+              <div class="status-indicator" id="status3"></div>
+              <div class="server-name">備用線路 2</div>
+              <div class="ping-result" id="ping3">檢測中...</div>
+            </div>
+          </div>
+          <div class="test-btn" id="testBtn">重新檢測</div>
+          <p class="recommended" id="recommendation">推薦連線: 檢測中...</p>
+        </div>
+        
+        
+        <a href="https://97y.me/hJCw3" class="cta-btn" id="registerBtn" onclick="fbq('track', 'Lead');">立即註冊</a>
         
         <a href="https://t.me/hong_2537" class="cta-btn" onclick="fbq('track', 'Lead');">联络子涵</a>
-
-
       </div>
     </div>
   </div>
+
+  <script>
+    
+    const servers = [
+      { id: 1, name: '主站連線', url: '97y.me', baseUrl: 'https://97y.me/hJCw3', 
+        testUrls: ['https://97y.me/favicon.ico', 'https://97y.me/hJCw3'] },
+      { id: 2, name: '備用線路 1', url: '97y.me', baseUrl: 'https://97y.me/o0xQk',
+        testUrls: ['https://97y.me/favicon.ico', 'https://97y.me/o0xQk'] },
+      { id: 3, name: '備用線路 2', url: '97y.me', baseUrl: 'https://97y.me/K8tMi',
+        testUrls: ['https://97y.me/favicon.ico', 'https://97y.me/K8tMi'] }
+    ];
+    
+    // 存储测试结果
+    let testResults = [];
+    let isTesting = false;
+    
+    // 显示测试进度
+    function showProgress(percent) {
+      const progressBar = document.getElementById('progressBar');
+      const progressFill = document.getElementById('progressFill');
+      const testingStatus = document.getElementById('testingStatus');
+      
+      progressBar.style.display = 'block';
+      testingStatus.style.display = 'block';
+      progressFill.style.width = `${percent}%`;
+      
+      if (percent >= 100) {
+        setTimeout(() => {
+          progressBar.style.display = 'none';
+          testingStatus.style.display = 'none';
+        }, 500);
+      }
+    }
+    
+    // 更高准确性的测试函数 - 测试多个资源
+    async function enhancedTest(server) {
+      let totalTime = 0;
+      let successCount = 0;
+      const results = [];
+      
+      for (let testUrl of server.testUrls) {
+        const result = await fetchWithTimeout(testUrl);
+        results.push(result);
+        
+        if (result.success) {
+          totalTime += result.time;
+          successCount++;
+        }
+      }
+      
+      // 计算平均响应时间，如果所有请求都失败则返回失败
+      if (successCount === 0) {
+        return { success: false, time: 999, details: results };
+      }
+      
+      return {
+        success: true,
+        time: Math.round(totalTime / successCount),
+        details: results
+      };
+    }
+    
+    // 带超时的fetch函数
+    function fetchWithTimeout(url, timeout = 5000) {
+      return new Promise(async (resolve) => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        
+        // 设置超时
+        const timeoutId = setTimeout(() => {
+          controller.abort();
+          resolve({ success: false, time: timeout, error: 'timeout' });
+        }, timeout);
+        
+        try {
+          const startTime = performance.now();
+          
+          // 选择适当的方法测试URL (图片或fetch请求)
+          if (url.includes('favicon.ico')) {
+            // 对于favicon使用图片加载方法
+            const img = new Image();
+            img.onload = () => {
+              clearTimeout(timeoutId);
+              const endTime = performance.now();
+              resolve({ success: true, time: Math.round(endTime - startTime) });
+            };
+            img.onerror = () => {
+              clearTimeout(timeoutId);
+              const endTime = performance.now();
+              resolve({ success: false, time: Math.round(endTime - startTime), error: 'image_error' });
+            };
+            // 添加随机参数避免缓存
+            img.src = `${url}?t=${Date.now()}`;
+          } else {
+            // 对于其他URL使用fetch测试
+            const response = await fetch(url, {
+              method: 'HEAD',
+              mode: 'no-cors', // 允许跨域请求
+              cache: 'no-store', // 避免缓存
+              signal
+            });
+            
+            clearTimeout(timeoutId);
+            const endTime = performance.now();
+            resolve({ success: true, time: Math.round(endTime - startTime) });
+          }
+        } catch (error) {
+          clearTimeout(timeoutId);
+          const endTime = performance.now();
+          resolve({ 
+            success: false, 
+            time: Math.round(endTime - startTime), 
+            error: error.name === 'AbortError' ? 'timeout' : error.message 
+          });
+        }
+      });
+    }
+    
+    
+    function updateStatus(id, result) {
+      const statusEl = document.getElementById(`status${id}`);
+      const pingEl = document.getElementById(`ping${id}`);
+      
+      
+      statusEl.classList.remove('status-good', 'status-medium', 'status-poor');
+      
+      if (!result.success) {
+        pingEl.textContent = '无法连接';
+        statusEl.classList.add('status-poor');
+        return;
+      }
+      
+      const time = result.time;
+      
+      // 根据ping
+      if (time < 200) {
+        statusEl.classList.add('status-good');
+      } else if (time < 500) {
+        statusEl.classList.add('status-medium');
+      } else {
+        statusEl.classList.add('status-poor');
+      }
+      
+      pingEl.textContent = `${time}ms`;
+    }
+    
+    
+    function updateRecommendation() {
+      const recommendEl = document.getElementById('recommendation');
+      const registerBtn = document.getElementById('registerBtn');
+      
+      
+      const bestServer = testResults
+        .filter(result => result.success)
+        .sort((a, b) => a.time - b.time)[0];
+      
+      if (!bestServer) {
+        recommendEl.textContent = '所有线路连接不畅，请稍后再试';
+        return;
+      }
+      
+      const server = servers.find(s => s.id === bestServer.id);
+      recommendEl.textContent = `推薦連線: ${server.name} (最佳速度: ${bestServer.time}ms)`;
+      
+      // 更新注册按钮的链接为最佳线路
+      registerBtn.href = server.baseUrl;
+      
+      // 高亮显示最佳服务器
+      servers.forEach(s => {
+        const serverEl = document.getElementById(`server${s.id}`);
+        if (s.id === bestServer.id) {
+          serverEl.classList.add('selected-server');
+        } else {
+          serverEl.classList.remove('selected-server');
+        }
+      });
+    }
+    
+    
+    async function testAllServers() {
+      if (isTesting) return;
+      
+      isTesting = true;
+      testResults = [];
+      document.getElementById('testBtn').textContent = '测试进行中...';
+      document.getElementById('testingStatus').textContent = '正在测试网络连接，请稍候...';
+      
+     
+      servers.forEach(server => {
+        const pingEl = document.getElementById(`ping${server.id}`);
+        pingEl.textContent = '檢測中...';
+        document.getElementById(`status${server.id}`).className = 'status-indicator';
+        document.getElementById(`server${server.id}`).classList.remove('selected-server');
+      });
+      
+      showProgress(5);
+      
+      
+      const testRounds = 3;
+      const totalTests = servers.length * testRounds;
+      let completedTests = 0;
+      
+      for (let round = 0; round < testRounds; round++) {
+        const roundResults = [];
+        
+        for (const server of servers) {
+          const result = await enhancedTest(server);
+          roundResults.push({ id: server.id, ...result });
+          
+          completedTests++;
+          showProgress(Math.round((completedTests / totalTests) * 100));
+          
+          
+          if (round === 0) {
+            updateStatus(server.id, result);
+          }
+        }
+        
+        
+        if (round === 0) {
+          testResults = roundResults;
+        } else {
+          // 合并结果，计算平均值
+          for (let i = 0; i < testResults.length; i++) {
+            if (testResults[i].success && roundResults[i].success) {
+              testResults[i].time = Math.round((testResults[i].time + roundResults[i].time) / 2);
+              testResults[i].details = [...testResults[i].details, ...roundResults[i].details];
+            }
+          }
+        }
+      }
+      
+      
+      testResults.forEach(result => {
+        updateStatus(result.id, result);
+      });
+      
+      
+      updateRecommendation();
+      
+      document.getElementById('testBtn').textContent = '重新檢測';
+      isTesting = false;
+    }
+    
+    
+    function setupServerSelection() {
+      servers.forEach(server => {
+        document.getElementById(`server${server.id}`).addEventListener('click', function() {
+          
+          document.getElementById('registerBtn').href = server.baseUrl;
+          
+         
+          servers.forEach(s => {
+            const serverEl = document.getElementById(`server${s.id}`);
+            if (s.id === server.id) {
+              serverEl.classList.add('selected-server');
+            } else {
+              serverEl.classList.remove('selected-server');
+            }
+          });
+          
+          
+          const pingEl = document.getElementById(`ping${server.id}`);
+          const speedText = pingEl.textContent;
+          document.getElementById('recommendation').textContent = 
+            `已選擇: ${server.name} (速度: ${speedText})`;
+        });
+      });
+    }
+    
+    
+    window.addEventListener('load', function() {
+      testAllServers();
+      setupServerSelection();
+      
+     
+      document.getElementById('testBtn').addEventListener('click', testAllServers);
+    });
+    
+    
+    window.addEventListener('online', function() {
+      if (!isTesting) {
+        testAllServers();
+      }
+    });
+  </script>
 </body>
 </html>
